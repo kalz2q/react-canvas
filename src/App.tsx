@@ -6,8 +6,7 @@ const width = 255
 const height = 255
 
 function App() {
-  // const [png, setPng] = useState<string | null>(null)
-  const [png, setPng] = useState<string>("")
+  const [png, setPng] = useState<string | null>(null)
 
   useEffect(() => {
     const canvasElem = document.createElement('canvas')
@@ -25,7 +24,7 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div className="App">
       <h3>画像生成</h3>
       <h4>生成</h4>
       {png && (
