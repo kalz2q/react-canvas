@@ -15,6 +15,7 @@ function App() {
       context.fillRect(0, 0, canvasElem.width, canvasElem.height)
       context.fillStyle = 'yellow'
       context.fillRect(50, 50, 50, 50)
+      context.fillRect((canvasElem.width - 100), 50, 50, 50)
     }
     setPng(canvasElem.toDataURL())
   }, [png])
