@@ -8,6 +8,7 @@ const height = 255
 function App() {
   const [png, setPng] = useState<string | null>(null)
   // const [png, setPng] = useState<string>("")
+  const [png2, setPng2] = useState<string | null>(null)
 
   useEffect(() => {
     const canvasElem = document.createElement('canvas')
@@ -18,11 +19,13 @@ function App() {
     // draw
     if (ctx !== null) {
       ctx.clearRect(0, 0, width, height)
-      // ctx.fillStyle = '#888888'
+      ctx.fillStyle = '#888888'
+      ctx.fillRect(0, 0, width, height)
       ctx.fillStyle = 'pink'
       ctx.fillRect(50, 50, 50, 50)
     }
     setPng(canvasElem.toDataURL())
+
   }, [])
 
   return (
