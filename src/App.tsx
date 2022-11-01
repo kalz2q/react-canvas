@@ -1,31 +1,43 @@
 import React from 'react';
 import './App.css';
-// react canvas minimum
-const { useEffect, useState } = React;
+// react canvas minimum useRef version
+const { useRef, useEffect } = React;
 
 function App() {
-  const [png, setPng] = useState<string | null>(null)
+  const width = 400;
+  const height = 200;
+  let canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const getContext = (): CanvasRenderingContext2D => {
+    const canvas: any = canvasRef.current;
+    return canvas.getContext("2d");
+  };
 
-  useEffect(() => {
-    const canvasElem = document.createElement('canvas')
-    const context = canvasElem.getContext('2d')
 
-    // draw
-    if (context !== null) {
-      context.fillRect(0, 0, canvasElem.width, canvasElem.height)
-      context.fillStyle = 'yellow'
-      context.fillRect(50, 50, 50, 50)
-      context.fillRect((canvasElem.width - 100), 50, 50, 50)
-    }
-    setPng(canvasElem.toDataURL())
-  }, [png])
+  const context = getContext();
+  // draw
+  context.fillRect(0, 0, width, height)
+  context.fillStyle = 'yellow'
+  context.fillRect(50, 50, 50, 50)
+  context.fillRect((width - 100), 50, 50, 50)
+
+  // useEffect(() => {
+  //   const context: any = canvasRef.current;
+  //   context.getContext("2d");
+  //   // draw
+  //   context.fillRect(0, 0, width, height)
+  //   context.fillStyle = 'yellow'
+  //   context.fillRect(50, 50, 50, 50)
+  //   context.fillRect((width - 100), 50, 50, 50)
+  // });
 
   return (
     <div className="App">
-      <h1>何か描いてみる</h1>
-      {png && (
-        <img alt="" src={png} />
-      )}
+      <h1>Canvas useRef version</h1>
+      <canvas
+        ref={canvasRef}
+        width={`${width}px`}
+        height={`${height}px`}
+      />
     </div>
   )
 }
